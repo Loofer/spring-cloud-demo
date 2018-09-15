@@ -6,5 +6,8 @@ ADD src /tmp/build/src
 RUN cd /tmp/build && mvn clean package \
         #拷贝编译结果到指定目录
         && mv target/*.jar /app.jar \
-
+        #清理编译痕迹
+        && cd / && rm -rf /tmp/build
+VOLUME /tmp
 EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app.jar"]
