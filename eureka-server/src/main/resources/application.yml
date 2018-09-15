@@ -1,0 +1,27 @@
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    instanceId: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://193.112.46.15:${server.port}/eureka/
+#    register-with-eureka: false
+  server:
+#  自我保护
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 4000
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka
+  cloud:
+    inetutils:
+#      ignored-interfaces:
+#        - docker0
+#        - veth.*
+#        - docker0
+#        - lo
+#      preferred-networks: ^193\.112
+      use-only-site-local-interfaces: false
